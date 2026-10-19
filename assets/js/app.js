@@ -74,6 +74,9 @@
       card.classList.toggle('is-current', card.getAttribute('data-lang-card') === lang);
     });
 
+    var sub = $('.hero__sub');
+    if (sub) sub.setAttribute('lang', lang === 'en' ? 'zh-Hant' : 'en');
+
     var dest = DEST[lang];
     if ($('#go')) $('#go').setAttribute('href', dest);
     if ($('#dest-url')) $('#dest-url').setAttribute('href', dest);
