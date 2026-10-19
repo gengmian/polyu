@@ -32,7 +32,8 @@
 ├── site.webmanifest
 ├── robots.txt
 ├── package.json
-└── LICENSE
+├── LICENSE
+└── NOTICE
 ```
 
 ## 部署到 Cloudflare Workers
@@ -78,3 +79,9 @@ npm run preview       # http://127.0.0.1:4173/
 npm run build:pages   # 生成 dist/
 npm run check         # 校验三语文案与资源
 ```
+
+## 许可
+
+原创代码以 **GNU GPL v3.0** 发布，见 [LICENSE](LICENSE)。
+
+PolyU 名称与校徽、naiwa 形象、字体等第三方素材不适用 GPL，详见 [NOTICE](NOTICE)。

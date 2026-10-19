@@ -1,0 +1,22 @@
+香港奶龍大學 · The Hong Kong Nailong University
+Copyright (C) 2026 香港奶龍大學 contributors
+
+The original source code and documentation in this repository are licensed
+under the GNU General Public License, version 3 (GPL-3.0-only).
+See the LICENSE file for the full terms.
+
+Third-party materials are not covered by the GPL:
+
+- The name, word mark, crest/logo and website content of The Hong Kong
+  Polytechnic University (PolyU) belong to PolyU. The PolyU crest/logo
+  images are included to identify the redirect destination.
+- The "Nailong" / "naiwa" character image (assets/img/naiwa.jpg) belongs
+  to its respective rights holders and is included at the site owner's
+  request.
+- Roboto and Playfair Display fonts are licensed under the SIL Open Font
+  License 1.1; see assets/fonts/LICENSE-Roboto.txt and
+  assets/fonts/LICENSE-PlayfairDisplay.txt.
+
+This also applies to the preview and Open Graph images that contain these
+marks or characters. The GPL applies only to the original code in this
+repository; it does not grant any rights to the third-party material above.
