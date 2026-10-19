@@ -104,6 +104,7 @@ rsync -avz --exclude .git --exclude .refs --exclude node_modules \
 ### 说明
 
 - 现在只有 80 端口，没有证书。`*.key` / `*.pem` 不要放进网站目录（rsync 已排除，Nginx 也拒绝访问）。
+- 云服务器需在安全组放行 TCP 80；阿里云北京等大陆节点还要求域名 ICP 备案，否则 80/443 可能被拦截（Cloudflare 会返回 522）。
 - 以后要 HTTPS：换成 `deploy/nginx.conf`，按文件头注释申请证书；同时把 `index.html` 里
   canonical / og 的 `http://` 改回 `https://`。
 - 如果域名套了 Cloudflare：源站目前只有 80，SSL/TLS 模式先选 **Flexible**；以后源站上了
