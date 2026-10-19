@@ -1,13 +1,14 @@
 # 香港奶龍大學
 
-纯静态单页，部署在 **Cloudflare Pages**：无服务器、无证书、无备案、无构建依赖。
+纯静态单页，部署在 **Cloudflare Workers（Static Assets）**：无服务器、无证书、无备案。
 
 ## 项目结构
 
 ```text
 .
 ├── index.html
-├── _headers                     # Pages 安全响应头与缓存
+├── wrangler.jsonc               # Workers 静态资源配置（指向 dist/）
+├── _headers                     # 安全响应头与缓存
 ├── assets/
 │   ├── css/style.css
 │   ├── js/
@@ -34,50 +35,46 @@
 └── LICENSE
 ```
 
-## 部署到 Cloudflare Pages
+## 部署到 Cloudflare Workers
 
-### 1. 连接 GitHub 仓库
-
-Cloudflare Dashboard → **Workers & Pages** → **Create** → **Pages** → **Connect to Git**。
-
-选择仓库 `gengmian/polyu`，分支 `main`。
-
-### 2. 构建设置
+你现在这个 Worker 流程可以直接用：
 
 | 项目 | 值 |
 | --- | --- |
-| Framework preset | None |
+| Project name | `polyu` |
 | Build command | `bash scripts/build-pages.sh` |
-| Build output directory | `dist` |
-| Production branch | `main` |
+| Deploy command | `npx wrangler deploy`（保持默认） |
+| Preview builds | 可选 |
+| Cloudflare Access | **不要开启**（公开站点） |
 
-保存并 Deploy。第一次构建完成后会得到 `https://<项目名>.pages.dev`，先确认这个地址能打开。
+保存并部署。完成后先打开：
 
-### 3. 绑定域名
+```text
+https://polyu.<你的 workers.dev 子域>.workers.dev
+```
 
-Pages 项目 → **Custom domains** → 添加：
+`wrangler.jsonc` 已经把静态目录指向 `./dist`，`_headers` 会随静态资源一起生效。
+
+### 绑定域名
+
+Worker → **Settings** → **Domains & Routes** → **Add custom domain**：
 
 - `xn--psszg58csy9ayt3cnsh.com`（香港奶龙大学.com）
 - `www.xn--psszg58csy9ayt3cnsh.com`（可选）
 
-域名已经在 Cloudflare。如果 DNS 里还有指向旧服务器 `39.102.214.121` 的 A/AAAA 记录，先删掉，再让 Pages 创建指向 `<项目名>.pages.dev` 的 CNAME。旧服务器已经停用，删掉不会有影响。
+如果 DNS 里还有指向旧服务器 `39.102.214.121` 的 A/AAAA 记录，先删掉。Cloudflare 会自动创建指向这个 Worker 的记录并签发证书。
 
-### 4. HTTPS 与验证
-
-- SSL/TLS → **Full (strict)**
-- SSL/TLS → Edge Certificates → 打开 **Always Use HTTPS**
+验证：
 
 ```bash
 curl -I https://xn--psszg58csy9ayt3cnsh.com/
 curl -I https://www.xn--psszg58csy9ayt3cnsh.com/
 ```
 
-证书由 Cloudflare 自动签发，不需要再管 80/443、备案或 Nginx。
-
 ## 本地
 
 ```bash
 npm run preview       # http://127.0.0.1:4173/
-npm run build:pages   # 生成 dist/，与 Pages 构建一致
+npm run build:pages   # 生成 dist/
 npm run check         # 校验三语文案与资源
 ```
