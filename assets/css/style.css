@@ -1,7 +1,7 @@
 /* ==========================================================================
    香港奶龍大學 · The Hong Kong Nailong University
-   An unofficial, fan-made gateway to PolyU. Design language borrowed from
-   PolyU: crimson #a20337, Roboto, Playfair Display, generous white space.
+   A PolyU-style gateway. Design language borrowed from PolyU: crimson
+   #a20337, Roboto, Playfair Display, generous white space.
    ========================================================================== */
 
 @font-face {
@@ -202,10 +202,9 @@ html.i18n-ready [data-i18n-html] { visibility: visible; }
 }
 .brand__seal {
   flex: 0 0 auto;
-  width: 52px;
-  height: 52px;
-  border-radius: 11px;
-  box-shadow: 0 8px 22px rgba(162, 3, 55, 0.16);
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
 }
 .brand__text { display: flex; flex-direction: column; min-width: 0; }
 .brand__en {
@@ -350,7 +349,6 @@ html.i18n-ready [data-i18n-html] { visibility: visible; }
   line-height: 1.5;
   text-transform: uppercase;
 }
-html[data-lang="en"] .masthead__note { visibility: hidden; }
 html[data-lang="en"] .hero__title {
   max-width: 13em;
   font-family: var(--serif);
@@ -538,31 +536,18 @@ body.is-stayed .medallion__bar {
   stroke-dashoffset: 0;
   opacity: 0.3;
 }
-.medallion__disc {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 1;
-  width: 72%;
-  height: 72%;
-  transform: translate(-50%, -50%);
-  border: 1px solid #f1e4ca;
-  border-radius: 50%;
-  background: var(--cream);
-}
-.medallion__face {
+.medallion__photo {
   position: absolute;
   top: 50%;
   left: 50%;
   z-index: 2;
-  width: 61%;
-  height: 61%;
+  width: 72%;
+  height: 72%;
   transform: translate(-50%, -50%);
-}
-.medallion__eyes {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: med-blink 7.5s infinite;
+  border: 3px solid var(--cream);
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 16px 36px rgba(35, 31, 32, 0.18);
 }
 .medallion__caption {
   display: flex;
@@ -866,10 +851,6 @@ html[data-lang="en"] .dest-card__glyph {
    -------------------------------------------------------------------------- */
 @keyframes med-spin { to { transform: rotate(1turn); } }
 @keyframes med-fill { to { stroke-dashoffset: 0; } }
-@keyframes med-blink {
-  0%, 92%, 100% { transform: scaleY(1); }
-  94%, 96% { transform: scaleY(0.12); }
-}
 @keyframes rise {
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: none; }
@@ -908,7 +889,7 @@ html[data-lang="en"] .dest-card__glyph {
   .utility__note { display: none; }
   .utility__inner { justify-content: flex-end; }
   .masthead { padding: 14px 0; gap: 16px; }
-  .brand__seal { width: 44px; height: 44px; border-radius: 9px; }
+  .brand__seal { width: 46px; height: 46px; }
   .brand__en-1 { font-size: 10px; }
   .brand__en-2 { font-size: 18px; }
   .brand__zh { font-size: 12px; letter-spacing: 0.2em; }
@@ -928,8 +909,7 @@ html[data-lang="en"] .dest-card__glyph {
 
   .hero { padding: 36px 0 52px; }
   .hero__title { font-size: clamp(36px, 10vw, 46px); }
-  html[data-lang="en"] .masthead__note { visibility: hidden; }
-html[data-lang="en"] .hero__title { font-size: clamp(30px, 8vw, 38px); }
+  html[data-lang="en"] .hero__title { font-size: clamp(30px, 8vw, 38px); }
   .hero__lead { margin-top: 18px; font-size: 15px; }
   .rule { margin: 22px 0; }
   .hero__status { font-size: 15px; }
@@ -937,7 +917,7 @@ html[data-lang="en"] .hero__title { font-size: clamp(30px, 8vw, 38px); }
   .countdown__num { font-size: 38px; }
   .hero__actions { margin-top: 22px; }
   .hero__actions .btn { flex: 1 1 auto; }
-  .hero__note { margin-top: 16px; }
+  .hero__note { display: none; }
   .medallion { width: min(300px, 78vw); }
   .medallion__caption { font-size: 9.5px; letter-spacing: 0.16em; }
   .medallion__caption::before,
@@ -957,10 +937,6 @@ html[data-lang="en"] .hero__title { font-size: clamp(30px, 8vw, 38px); }
   .facts { max-width: none; padding: 4px 20px; }
   .footer__inner { flex-direction: column; align-items: flex-start; gap: 10px; }
   .footer__links { gap: 18px; }
-}
-
-@media (max-width: 760px) {
-  .esc-hint { display: none; }
 }
 
 @media (max-width: 480px) {
@@ -988,7 +964,6 @@ html[data-lang="en"] .hero__title { font-size: clamp(30px, 8vw, 38px); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .medallion__ring,
-  .medallion__eyes,
   .hero__copy,
   .hero__visual { animation: none; }
   .dest-card,

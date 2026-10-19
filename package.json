@@ -2,7 +2,7 @@
   "name": "nailong-university",
   "version": "1.0.0",
   "private": true,
-  "description": "Unofficial fan gateway for 香港奶龙大学.com, redirecting to The Hong Kong Polytechnic University.",
+  "description": "PolyU-style gateway for 香港奶龙大学.com.",
   "type": "module",
   "scripts": {
     "start": "node scripts/serve.mjs",

@@ -11,3 +11,10 @@ Thumbs.db
 *.log
 .vscode/
 .idea/
+
+# Source image kept locally; the web copy lives in assets/img/
+/naiwa.jpg
+
+# Deployment credentials (Cloudflare Origin CA, etc.) — never commit these
+*.key
+*.pem

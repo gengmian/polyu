@@ -78,6 +78,20 @@ for (const file of ['favicon.ico', 'site.webmanifest', 'robots.txt', 'assets/img
   }
 }
 
+/* Manifest icons must exist too */
+try {
+  const manifest = JSON.parse(await read('site.webmanifest'));
+  for (const icon of manifest.icons || []) {
+    try {
+      await access(path.join(root, icon.src));
+    } catch {
+      problems.push(`missing manifest icon: ${icon.src}`);
+    }
+  }
+} catch (error) {
+  problems.push(`invalid site.webmanifest: ${error.message}`);
+}
+
 /* No external assets (fonts/scripts/images must be self-hosted) */
 const externalAsset = [...html.matchAll(/(?:src|href)="(https?:\/\/[^"]+)"/g)]
   .map((m) => m[1])
