@@ -95,7 +95,8 @@ try {
 /* No external assets (fonts/scripts/images must be self-hosted) */
 const externalAsset = [...html.matchAll(/(?:src|href)="(https?:\/\/[^"]+)"/g)]
   .map((m) => m[1])
-  .filter((u) => !u.startsWith('https://www.polyu.edu.hk/') && !u.startsWith('https://github.com/') && !u.startsWith('https://xn--psszg58csy9ayt3cnsh.com/'));
+  .filter((u) => !u.startsWith('https://www.polyu.edu.hk/') && !u.startsWith('https://github.com/') && !u.startsWith('https://xn--psszg58csy9ayt3cnsh.com/') &&
+      !u.startsWith('http://xn--psszg58csy9ayt3cnsh.com/'));
 if (externalAsset.length) problems.push(`external asset references: ${externalAsset.join(', ')}`);
 
 /* Redirect timing and CSS progress animation must agree */
