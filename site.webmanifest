@@ -1,0 +1,14 @@
+{
+  "name": "香港奶龍大學 · The Hong Kong Nailong University",
+  "short_name": "奶龍大學",
+  "description": "An unofficial fan-made gateway that redirects to PolyU's official website.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#a20337",
+  "icons": [
+    { "src": "/assets/img/seal.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/assets/img/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

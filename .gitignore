@@ -1,0 +1,10 @@
+# Source logo provided by the site owner; the optimised copy lives in assets/img/
+/polyu.png
+
+.refs/
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
