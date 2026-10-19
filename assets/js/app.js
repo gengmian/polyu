@@ -17,7 +17,6 @@
   var lastCount = -1;
   var toastTimer = 0;
   var scrollCancelled = false;
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   function $(selector) { return document.querySelector(selector); }
   function t(key) {
@@ -129,24 +128,9 @@
     timer = window.setInterval(tick, 150);
   }
 
-  function scrollToGateway() {
-    var gateway = $('#gateway');
-    if (!gateway) return;
-    gateway.scrollIntoView({ behavior: reduceMotion.matches ? 'auto' : 'smooth', block: 'start' });
-    var title = $('#gateway-title');
-    if (title) {
-      window.setTimeout(function () {
-        try { title.focus({ preventScroll: true }); } catch (e) { title.focus(); }
-      }, reduceMotion.matches ? 0 : 480);
-    }
-  }
-
   function stay(options) {
     options = options || {};
-    if (state === 'stayed') {
-      if (options.scroll) scrollToGateway();
-      return;
-    }
+    if (state === 'stayed') return;
     state = 'stayed';
     window.clearInterval(timer);
     body.classList.remove('is-running');
@@ -155,7 +139,6 @@
     if (num) num.hidden = true;
     setCountdownLabel(0);
     if (!options.silent) showToast(t('toast.stayed'));
-    if (options.scroll) scrollToGateway();
   }
 
   /* Wire up controls */
@@ -171,16 +154,9 @@
   var stayButton = $('#stay');
   if (stayButton) {
     stayButton.addEventListener('click', function () {
-      if (state === 'stayed') { scrollToGateway(); return; }
-      stay({ scroll: true });
+      if (state !== 'stayed') stay();
     });
   }
-
-  Array.prototype.forEach.call(document.querySelectorAll('[data-stay-link]'), function (link) {
-    link.addEventListener('click', function () {
-      if (state !== 'stayed') stay({ silent: true });
-    });
-  });
 
   window.addEventListener('keydown', function (event) {
     if (event.key === 'Escape' && state === 'running') stay();

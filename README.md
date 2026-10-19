@@ -12,7 +12,7 @@
   `Esc`、点击「留在本页」或向下滚动来取消。
 - **三语界面**：简中 / 繁中 / 英文即时切换，写入 URL（`?lang=zh-hant`）与
   `localStorage`，刷新后保持。
-- **跳转到对应语言**：简中 → `/sc/`，繁中 → `/tc/`，英文 → `/`，同时提供三个官网入口卡片。
+- **跳转到对应语言**：简中 → `/sc/`，繁中 → `/tc/`，英文 → `/`。
 - **PolyU 风格**：品牌红 `#a20337`、Roboto + Playfair Display 字体、衬线校名、细线分隔、
   全幅留白；吉祥物使用 `assets/img/naiwa.jpg`，页头与站点图标使用 PolyU 校徽。
 - **可访问**：键盘可达、`prefers-reduced-motion` 支持、语义化结构、跳过导航链接、
@@ -41,7 +41,7 @@ npm run check          # 校验三语文案完整性、资源引用与跳转时�
 
 ```text
 .
-├── index.html                  # 单页：头图、跳转、目的地卡片、关于
+├── index.html                  # 单页：头图与自动跳转
 ├── assets/
 │   ├── css/style.css           # PolyU 风格样式与响应式
 │   ├── js/lang.js              # 首屏前确定语言，避免闪错语言
@@ -147,7 +147,7 @@ xn--psszg58csy9ayt3cnsh.com, www.xn--psszg58csy9ayt3cnsh.com {
 | --- | --- |
 | 文案 / 三种语言 | `assets/js/i18n.js`，然后 `npm run check` |
 | 自动跳转时长 | `assets/js/app.js` 的 `REDIRECT_MS` **和** `assets/css/style.css` 中 `med-fill 4s`（两者会被检查脚本比对） |
-| 跳转目标 | `assets/js/i18n.js` 顶部的 `NAILONG_DEST`（同时改 `index.html` 里卡片的 `href`） |
+| 跳转目标 | `assets/js/i18n.js` 顶部的 `NAILONG_DEST` |
 | 品牌色 / 字体 / 间距 | `assets/css/style.css` 顶部的 CSS 变量 |
 | 是否允许搜索引擎收录 | 删除 `index.html` 的 `noindex` meta 与 `robots.txt` 的 `Disallow` |
 
