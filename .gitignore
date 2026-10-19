@@ -21,3 +21,7 @@ Thumbs.db
 
 # Cloudflare Pages build output
 dist/
+
+# Root source images only; web copies live in assets/img/
+/*.png
+/*.jpg
